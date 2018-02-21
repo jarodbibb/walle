@@ -1,0 +1,24 @@
+<h1> The Wall </h1>
+ <p> Welcome <%= @user.name %> </p>
+
+ <% if flash[:notice] %>
+  <% flash[:notice].each do |note| %>
+    <p id="notice"><%= note %></p>  
+  <% end %>
+<% end %>
+
+ <h2> Post a message</h2>
+
+ <form action="/messages" method='post'>
+ <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+ <label> Message </label>
+ <input type="text" name = 'message' id = 'message'>
+ <button> Submit Message </button>
+ </form>
+
+ <% @messages.each do |message| %>
+ <p><%= message.user.name %> </p>
+ <p> <%= message.created_at %> </p>
+ <p> <%= message.message %>
+</p>
+<% end %>  
